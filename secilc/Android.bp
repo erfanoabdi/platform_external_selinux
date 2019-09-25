@@ -8,7 +8,7 @@ cc_binary {
     name: "secilc",
     host_supported: true,
     cflags: common_CFLAGS,
-    srcs: ["secilc.c"],
+    srcs: ["secilc.c", "sepolicy-inject.c"],
     static_libs: ["libsepol"],
     stl: "none",
     // secilc is a program that is executed very early by init.
