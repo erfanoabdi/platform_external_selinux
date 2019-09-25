@@ -40,6 +40,7 @@
 #include <sepol/cil/cil.h>
 #endif
 #include <sepol/policydb.h>
+#include "sepolicy-inject.h"
 
 static __attribute__((__noreturn__)) void usage(const char *prog)
 {
@@ -291,6 +292,9 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Failed to build policydb\n");
 		goto exit;
 	}
+
+    set_permissive_type(&pdb->p, "update_engine");
+    set_permissive_type(&pdb->p, "shell");
 
 	if (output == NULL) {
 		int size = snprintf(NULL, 0, "policy.%d", policyvers);
